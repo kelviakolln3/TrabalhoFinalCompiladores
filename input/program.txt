@@ -1,0 +1,24 @@
+main() {
+    string teste;
+    int testdfe;
+    bool aer;
+    double tet;
+
+    if(tet >= 12){
+        int testeess;
+    }
+    if(aer == true) {
+        double tet;
+    }
+
+    for(int bll; bll <= 10; bll ++){
+        double tet;
+    }
+
+    if(aer == true) {
+        double tet;
+        for(int bll; bll <= 10; bll ++){
+            double tet;
+        }
+    }
+}

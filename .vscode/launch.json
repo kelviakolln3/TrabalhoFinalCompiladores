@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run Main",
+            "request": "launch",
+            "mainClass": "src.Main",
+            "projectName": "TrabalhoFinalCompiladores_6cf8dea4",
+            "args": ["input/program.txt"]
+        }
+    ]
+}
