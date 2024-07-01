@@ -32,19 +32,19 @@ public class Lexer {
                     column = 1;
                     break;
                 case '(':
-                    addToken(TokenType.LEFT_PAREN, null);
+                    addToken(TokenType.LEFT_PAREN, "(");
                     break;
                 case ')':
-                    addToken(TokenType.RIGHT_PAREN, null);
+                    addToken(TokenType.RIGHT_PAREN, ")");
                     break;
                 case '{':
-                    addToken(TokenType.LEFT_BRACE, null);
+                    addToken(TokenType.LEFT_BRACE, "{");
                     break;
                 case '}':
-                    addToken(TokenType.RIGHT_BRACE, null);
+                    addToken(TokenType.RIGHT_BRACE, "}");
                     break;
                 case ';':
-                    addToken(TokenType.SEMICOLON, null);
+                    addToken(TokenType.SEMICOLON, ";");
                     break;
                 case '>':
                     if (peek() == '=') {
@@ -66,24 +66,32 @@ public class Lexer {
                     if (peek() == '=') {
                         advance();
                         addToken(TokenType.EQUALS, "==");
+                    }else {
+                        addToken(TokenType.ASSIGN, "=");
                     }
                     break;
                 case '!':
                     if (peek() == '=') {
                         advance();
                         addToken(TokenType.NEQ, "!=");
+                    } else {
+                        throw new RuntimeException("Unexpected character: " + c);
                     }
                     break;
                 case '+':
                     if (peek() == '+') {
                         advance();
                         addToken(TokenType.INCREMENT, "++");
+                    } else{
+                        addToken(TokenType.PLUS, "+");
                     }
                     break;
                 case '-':
                     if (peek() == '-') {
                         advance();
                         addToken(TokenType.DECREMENT, "--");
+                    }else {
+                        addToken(TokenType.MINUS, "-");
                     }
                     break;
                 default:
@@ -122,7 +130,7 @@ public class Lexer {
                     }
             }
         }
-        // addToken(TokenType.EOF);
+        addToken(TokenType.EOF, "");
         return tokens;
     }
 
@@ -137,9 +145,6 @@ public class Lexer {
     }
 
     private void addToken(TokenType type, String lexeme) {
-        if (lexeme == null) {
-            lexeme = String.valueOf(input.charAt(current - 1));
-        }
         tokens.add(new Token(type, lexeme, line, column));
     }
 
@@ -172,28 +177,4 @@ public class Lexer {
             return '\0';
         return input.charAt(current);
     }
-
-    /* private char peekNext() {
-        if (current + 1 >= input.length())
-            return '\0';
-        return input.charAt(current + 1);
-    }
-
-    private char peekNextNext() {
-        if (current + 2 >= input.length())
-            return '\0';
-        return input.charAt(current + 2);
-    }
-
-    private char peekNextNextNext() {
-        if (current + 3 >= input.length())
-            return '\0';
-        return input.charAt(current + 3);
-    }
-
-    private char peekNextNextNextNext() {
-        if (current + 4 >= input.length())
-            return '\0';
-        return input.charAt(current + 4);
-    } */
 }

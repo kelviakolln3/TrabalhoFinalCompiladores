@@ -28,7 +28,7 @@ public class Parser {
         if(peek().type == TokenType.STRING || peek().type == TokenType.INT || peek().type == TokenType.BOOL || peek().type ==TokenType.DOUBLE) {
             parseB();
             consume(TokenType.IDENTIFIER, "Expect identifier after type");
-            consume(TokenType.SEMICOLON, "Expect ';' after identifier");
+            verfySemiColon(TokenType.SEMICOLON, "Expect ';' after identifier");
             parseA();
         }else if(peek().type == TokenType.IF || peek().type == TokenType.FOR){
             parseJ();
@@ -127,6 +127,12 @@ public class Parser {
     private Token consume(TokenType type, String message) {
         if (check(type)) return advance();
         throw error(peek(), message);
+    }
+
+    private Token verfySemiColon(TokenType type, String message) {
+        if (check(type)) return advance();
+        System.out.println("[line " + peek().line + ", column " + peek().column + "] Error at " + peek().lexeme + " - " + message);
+        return null;
     }
 
     private boolean check(TokenType type) {

@@ -12,7 +12,9 @@ public class Main {
             System.exit(1);
         }
 
-        String sourceFilePath = "input/program.txt";
+        String sourceFilePath = "input/program_caminho_feliz.txt"; 
+        //String sourceFilePath = "input/program_erro_lexico.txt";
+        //String sourceFilePath = "input/program_erro_parser.txt";
 
         try {
             String source = new String(Files.readAllBytes(Paths.get(sourceFilePath)),StandardCharsets.UTF_8);
@@ -20,9 +22,9 @@ public class Main {
             Lexer lexer = new Lexer(source);
             List<Token> tokens = lexer.tokenize();
 
-            for (Token token : tokens) {
+            /* for (Token token : tokens) {
                 System.out.println("Type: " + token.type + " Lexema: " + "'" + token.lexeme + "'");
-            }
+            } */
 
             Parser parser = new Parser(tokens);
             parser.parse();
