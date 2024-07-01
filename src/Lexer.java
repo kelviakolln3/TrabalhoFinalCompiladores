@@ -22,16 +22,16 @@ public class Lexer {
         while (!isAtEnd()) {
             char c = advance();
             switch (c) {
-                case ' ':
-                case '\r':
+                case ' ': // O lexer não faz nada quando encontra um espaço em branco.
+                case '\r': // O lexer não faz nada quando encontra o fim de uma linha
                 case '\t':
-                    // Ignora espaços em branco
+                    // O lexer não faz nada quando encontra um caractere de tabulação.
                     break;
                 case '\n':
                     line++;
                     column = 1;
                     break;
-                case '(':
+                case '(': // Verificar o caracter e adiciona o token e o lexema correspondente
                     addToken(TokenType.LEFT_PAREN, "(");
                     break;
                 case ')':
@@ -75,7 +75,7 @@ public class Lexer {
                         advance();
                         addToken(TokenType.NEQ, "!=");
                     } else {
-                        throw new RuntimeException("Unexpected character: " + c);
+                        throw new RuntimeException("Unexpected character: " + c); // Erro se não encontrar o caracter
                     }
                     break;
                 case '+':
@@ -94,12 +94,12 @@ public class Lexer {
                         addToken(TokenType.MINUS, "-");
                     }
                     break;
-                default:
-                    if (isDigit(c)) {
+                default: // Se não for nenhum dos outros cassos
+                    if (isDigit(c)) { // Verifica se o caracter é do tipo numerico se for ele vai ler o numero e adicionar o token
                         addToken(TokenType.NUMBER, readNumber());
-                    } else if (isAlpha(c)) {
+                    } else if (isAlpha(c)) { // Verifica se o caracter é uma palavra
                         String expression = readIdentifier();
-                        switch (expression) {
+                        switch (expression) { // valida se não são as palavras reservadas
                             case "main":
                                 addToken(TokenType.MAIN, "main");
                                 break;
@@ -121,17 +121,17 @@ public class Lexer {
                             case "double":
                                 addToken(TokenType.DOUBLE, "double");
                                 break;
-                            default:
+                            default: // se não for nenhuma palavra reservada ele adiciona o token e o lexema
                                 addToken(TokenType.IDENTIFIER, expression.toString());
                                 break;
                         }
                     } else {
-                        throw new RuntimeException("Unexpected character: " + c);
+                        throw new RuntimeException("Unexpected character: " + c); // Erro se não encontrar o caracter
                     }
             }
         }
-        addToken(TokenType.EOF, "");
-        return tokens;
+        addToken(TokenType.EOF, ""); // Adiciona o token de final de código
+        return tokens; // Ele retornar a lista de tokens que serão lidos
     }
 
     private boolean isAtEnd() {
