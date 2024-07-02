@@ -1,10 +1,10 @@
 main() {
     string teste;
     int testdfe;
-    bool aer;
+    bool aer
     double tet;
 
-    if(tet >= ){
+    if (tet >= ){
         int testeess;
     }
     if(aer == true) {

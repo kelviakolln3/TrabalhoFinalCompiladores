@@ -109,10 +109,7 @@ public class Parser {
             parseA();
             consume(TokenType.RIGHT_BRACE, "Expect '}' after block");
         }
-        // J can be empty, no need to throw an error here
     }
-
-    // Helper methods for parsing
 
     private boolean match(TokenType... types) {
         for (TokenType type : types) {

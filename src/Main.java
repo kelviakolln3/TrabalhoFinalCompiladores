@@ -17,16 +17,16 @@ public class Main {
         //String sourceFilePath = "input/program_erro_parser.txt";
 
         try {
-            String source = new String(Files.readAllBytes(Paths.get(sourceFilePath)),StandardCharsets.UTF_8); // Le o arquivo
+            String source = new String(Files.readAllBytes(Paths.get(sourceFilePath)),StandardCharsets.UTF_8);
 
-            Lexer lexer = new Lexer(source); // Passa para o lexico
+            Lexer lexer = new Lexer(source);
             List<Token> tokens = lexer.tokenize(); 
 
             /* for (Token token : tokens) {
                 System.out.println("Type: " + token.type + " Lexema: " + "'" + token.lexeme + "'");
             } */
 
-            Parser parser = new Parser(tokens); // Passa para o parser
+            Parser parser = new Parser(tokens);
             parser.parse();
 
             System.out.println("Parsing completed successfully!");

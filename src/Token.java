@@ -1,11 +1,10 @@
 package src;
 
-// Representa um token na linguagem
 public class Token {
-    public TokenType type; // Tipo do token
-    public String lexeme;  // Lexema (texto) do token
-    public int line;       // Linha onde o token foi encontrado
-    public int column;     // Coluna onde o token foi encontrado
+    public TokenType type;
+    public String lexeme;
+    public int line;
+    public int column;
 
     public Token(TokenType type, String lexeme, int line, int column) {
         this.type = type;
